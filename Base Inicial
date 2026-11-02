@@ -115,3 +115,42 @@ while True:
 
     print(mambo_naval)
     print(mambo)
+
+    print("\n")
+
+    print("--> JOGAR")
+    print("--> REGRAS")
+    print("--> SAIR")
+
+    opcao = input("Digite a opção desejada: ")
+
+    if opcao == "JOGAR":
+
+        print("\n")
+
+        print("Escolha o modo de jogo:")
+        print("--> Melhor de 3")
+        print("--> Melhor de 5")
+
+        escolha = input("Digite a opção desejada: ")
+
+        if escolha == "Melhor de 3":
+            while rodadas < 3:
+                print("Tabuleiro Mambo J1:")
+                print("\n")
+                for linha in matrizJ1_visual:
+                    print(linha)
+
+                print("\n")
+
+                print("Tabuleiro Mambo J2:")
+                print("\n")
+                for linha in matrizJ2_visual:
+                    print(linha)
+
+                print("\n")
+
+                while navios_encontrados < total_navios:
+                    while True:
+                        print("J1 digite as coordenadas para lançar um MAMBO MÍSSIL no J2(Use números de 0 a 4):")
+    
