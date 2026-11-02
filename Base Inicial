@@ -152,5 +152,106 @@ while True:
 
                 while navios_encontrados < total_navios:
                     while True:
-                        print("J1 digite as coordenadas para lançar um MAMBO MÍSSIL no J2(Use números de 0 a 4):")
+                        print("J1 digite as coordenadas para lançar um MAMBO MÍSSIL no J2(Use números de 1 a 6):")
     
+valida = False                                                                              #Vivian
+                        while valida == False:                                                                         #Vivian 
+                            linha = (input("Linha: "))
+                            for n in range(1, 6):
+                                if linha == str(n):
+                                    valida = True
+                                    linha = n -1
+
+                            if valida == False:
+
+                                print("Digite um número válido!")
+                                continue
+
+                            valida = False 
+                            while valida == False:                                                                                                          #Vivian
+                                coluna = (input("Coluna: "))                                                                             #Vivian
+                                for n in range(1, 6):                           
+                                   if coluna == str(n):
+                                    valida = True
+                                    coluna = n -1
+                                if valida == False:
+                                    print("Digite um número válido!")
+                                    continue
+                            if matrizJ2_visual[linha][coluna] != "~":
+
+                                print("Você já atirou nessa posição, Pare de ser Matikanetannhauser!")
+
+                            elif matrizJ2[linha][coluna] == 1:
+
+                                print("Você acertou o alvo, VAI MAMBO!")
+
+                                matrizJ2_visual[linha][coluna] = "X"
+                                pontosJ1 += 9
+
+                                print(f"Quantidade de cavalinhos(pontos para leigos):{pontosJ1}")
+                                for linha in matrizJ2_visual:
+                                    print(linha)
+                            else:
+                                print("Caiu na água!")
+                                matrizJ2_visual[linha][coluna] = "O"
+                                for linha in matrizJ2_visual:
+                                    print(linha)
+                                break
+                            valida = False    
+                        break
+
+                    while True:
+                        print("J2 digite as coordenadas para lançar um MAMBO MÍSSIL no J1(Use números de 1 a 6):")
+
+                        valida = False                                                                              #Vivian
+                        while valida == False:
+                            linha = (input("Linha: "))
+                            for n in range(1, 6):
+                               if linha == str(n):
+                                 valida = True
+                                 linha = n -1
+
+                            if valida == False:
+
+                                print("Digite um número válido!")
+                                continue
+
+                            valida = False  
+                            while valida == False:    
+                                coluna = (input("Coluna: "))                                                                         #Vivian
+                                for n in range(1, 6):
+                                    if coluna == str(n):
+                                       valida = True
+                                       coluna = n -1
+                                if valida == False:
+
+                                    print("Digite um número válido!")
+                                    continue
+
+                            if matrizJ1_visual[linha][coluna] != "~":
+
+                                print("Você já atirou nessa posição, Pare de ser Matikanetannhauser!")
+                                
+
+                            elif matrizJ1[linha][coluna] == 1:
+
+                                print("Você acertou o alvo, VAI MAMBO!")
+
+                                matrizJ1_visual[linha][coluna] = "X"
+                                pontosJ2 += 9
+
+                                print(f"Quantidade de cavalinhos(pontos para leigos):{pontosJ2}")
+                                for linha in matrizJ1_visual:
+                                    print(linha)
+                            else:
+                                print("Caiu na água!")
+
+                                matrizJ1_visual[linha][coluna] = "O"
+                                for linha in matrizJ1_visual:
+                                    print(linha)
+                                break
+                            valida = False    
+                        break       
+
+            rodadas += 1
+            print(f"Rodada {rodadas}")                 #Vivian fica com o reinicio da rodada
