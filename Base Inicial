@@ -1,7 +1,13 @@
+
 pontosJ1 = 0
 pontosJ2 = 0
 total_navios = 11
 partida = 0
+
+sequenciaJ1 = 0
+sequenciaJ2 = 0
+maiorSequenciaJ1 = 0
+maiorSequenciaJ2 = 0
 
 repetirPartida = False
 modoAnterior = 0
@@ -86,6 +92,7 @@ mambo = """⣿⣿⣿⣿⡿⣿⣿⡿⠛⠉⠁⠄⡰⠈⠤⠠⠀⠂⠠⠀⠀⠀⠀
 
 while True:
 
+    # Se estiver repetindo, entra direto em JOGAR
     if repetirPartida:
         opcao = "1"
     else:
@@ -112,6 +119,7 @@ while True:
             total_rodadas = 0
             voltar = False
 
+            # Se for uma repetição, usa o mesmo modo anterior
             if repetirPartida:
                 total_rodadas = modoAnterior
                 repetirPartida = False
@@ -286,11 +294,26 @@ while True:
             if serieJ1 > serieJ2:
                 print("J1 venceu a partida!")
 
+                sequenciaJ1 += 1
+                sequenciaJ2 = 0
+
+                if sequenciaJ1 > maiorSequenciaJ1:
+                    maiorSequenciaJ1 = sequenciaJ1
+
             elif serieJ2 > serieJ1:
                 print("J2 venceu a partida!")
 
+                sequenciaJ2 += 1
+                sequenciaJ1 = 0
+
+                if sequenciaJ2 > maiorSequenciaJ2:
+                    maiorSequenciaJ2 = sequenciaJ2
+
             else:
                 print("A partida terminou empatada!")
+
+                sequenciaJ1 = 0
+                sequenciaJ2 = 0
 
             print("\nFim do jogo. Obrigado por jogar uma partida de Mambo Naval!")
             print("Deseja jogar novamente?")
@@ -360,6 +383,12 @@ while True:
 
         if partida > 0:
             print(f"TOTAL GERAL: J1 = {totalGeralJ1} | J2 = {totalGeralJ2}")
+
+        print("\n===== SEQUÊNCIA DE VITÓRIAS =====")
+        print(f"J1: {sequenciaJ1} vitória(s) consecutiva(s)")
+        print(f"J2: {sequenciaJ2} vitória(s) consecutiva(s)")
+        print(f"Recorde J1: {maiorSequenciaJ1}")
+        print(f"Recorde J2: {maiorSequenciaJ2}")
 
         if opcao == "3":
             print("\n")
