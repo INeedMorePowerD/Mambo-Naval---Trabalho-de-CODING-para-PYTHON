@@ -1,15 +1,16 @@
+
 pontosJ1 = 0
 pontosJ2 = 0
 total_navios = 11
 partida = 0
 
-repetirPartida = False
-modoAnterior = 0
-
 sequenciaJ1 = 0
 sequenciaJ2 = 0
 maiorSequenciaJ1 = 0
 maiorSequenciaJ2 = 0
+
+repetirPartida = False
+modoAnterior = 0
 
 matrizJ1 = [
     [1, 1, 1, 0, 0],
@@ -111,6 +112,7 @@ while True:
 
         if partida == 5:
             print("Limite de 5 partidas atingido! Veja o PLACAR ou escolha SAIR.")
+            repetirPartida = False
 
         else:
             print("\n")
@@ -121,6 +123,7 @@ while True:
             if repetirPartida:
                 total_rodadas = modoAnterior
                 repetirPartida = False
+
             else:
                 while total_rodadas == 0 and voltar == False:
                     print("Escolha o modo de jogo:")
@@ -133,11 +136,14 @@ while True:
                     if escolha == "1":
                         total_rodadas = 3
                         modoAnterior = 3
+
                     elif escolha == "2":
                         total_rodadas = 5
                         modoAnterior = 5
+
                     elif escolha == "3":
                         voltar = True
+
                     else:
                         print("Opção inválida!")
 
@@ -155,26 +161,25 @@ while True:
                 acertosJ1 = 0
                 acertosJ2 = 0
 
-                for i in range(1, 6):
-                    for j in range(1, 6):
-                        matrizJ1_visual[i][j] = "~"
-                        matrizJ2_visual[i][j] = "~"
+                # Reinicia apenas as casas do tabuleiro, preservando cabeçalhos
+                for i in range(5):
+                    for j in range(5):
+                        matrizJ1_visual[i + 1][j + 1] = "~"
+                        matrizJ2_visual[i + 1][j + 1] = "~"
 
                 print(f"Rodada {rodadas + 1}")
                 print("\n")
 
                 print("Tabuleiro Mambo J1:")
                 print("\n")
-                print("  1 2 3 4")
-                for i in range(1, 6):
-                    print(i, matrizJ1_visual[i][1], matrizJ1_visual[i][2], matrizJ1_visual[i][3], matrizJ1_visual[i][4], matrizJ1_visual[i][5])
+                for fila in matrizJ1_visual:
+                    print(fila)
 
                 print("\n")
                 print("Tabuleiro Mambo J2:")
                 print("\n")
-                print("  1 2 3 4")
-                for i in range(1, 6):
-                    print(i, matrizJ2_visual[i][1], matrizJ2_visual[i][2], matrizJ2_visual[i][3], matrizJ2_visual[i][4], matrizJ2_visual[i][5])
+                for fila in matrizJ2_visual:
+                    print(fila)
 
                 print("\n")
 
@@ -203,27 +208,26 @@ while True:
                             if coluna == -1:
                                 print("Digite um número válido!")
 
+                        # Acessa a posição real somando 1 por causa dos cabeçalhos
                         if matrizJ2_visual[linha + 1][coluna + 1] != "~":
                             print("Você já atirou nessa posição, Pare de ser Matikanetannhauser!")
 
                         elif matrizJ2[linha][coluna] == 1:
-                            print("Você acertou o alvo, VAI MAMBO!")
+                            print("Você acertou o alvo, pode atirar de novo, VAI MAMBO!")
                             matrizJ2_visual[linha + 1][coluna + 1] = "X"
                             pontosJ1 += 9
                             acertosJ1 += 1
                             print(f"Quantidade de cavalinhos(pontos para leigos):{pontosJ1}")
 
-                            print("  1 2 3 4")
-                            for i in range(1, 6):
-                                print(i, matrizJ2_visual[i][1], matrizJ2_visual[i][2], matrizJ2_visual[i][3], matrizJ2_visual[i][4], matrizJ2_visual[i][5])
+                            for fila in matrizJ2_visual:
+                                print(fila)
 
                         else:
                             print("Caiu na água!")
                             matrizJ2_visual[linha + 1][coluna + 1] = "O"
 
-                            print("  1 2 3 4")
-                            for i in range(1, 6):
-                                print(i, matrizJ2_visual[i][1], matrizJ2_visual[i][2], matrizJ2_visual[i][3], matrizJ2_visual[i][4], matrizJ2_visual[i][5])
+                            for fila in matrizJ2_visual:
+                                print(fila)
 
                             vez = False
 
@@ -254,23 +258,21 @@ while True:
                             print("Você já atirou nessa posição, Pare de ser Matikanetannhauser!")
 
                         elif matrizJ1[linha][coluna] == 1:
-                            print("Você acertou o alvo, VAI MAMBO!")
+                            print("Você acertou o alvo, pode atirar de novo, VAI MAMBO!")
                             matrizJ1_visual[linha + 1][coluna + 1] = "X"
                             pontosJ2 += 9
                             acertosJ2 += 1
                             print(f"Quantidade de cavalinhos(pontos para leigos):{pontosJ2}")
 
-                            print("  1 2 3 4")
-                            for i in range(1, 6):
-                                print(i, matrizJ1_visual[i][1], matrizJ1_visual[i][2], matrizJ1_visual[i][3], matrizJ1_visual[i][4], matrizJ1_visual[i][5])
+                            for fila in matrizJ1_visual:
+                                print(fila)
 
                         else:
                             print("Caiu na água!")
                             matrizJ1_visual[linha + 1][coluna + 1] = "O"
 
-                            print("  1 2 3 4")
-                            for i in range(1, 6):
-                                print(i, matrizJ1_visual[i][1], matrizJ1_visual[i][2], matrizJ1_visual[i][3], matrizJ1_visual[i][4], matrizJ1_visual[i][5])
+                            for fila in matrizJ1_visual:
+                                print(fila)
 
                             vez = False
 
@@ -328,7 +330,7 @@ while True:
                     repetirPartida = False
                     continue
 
-                print("Reiniciando o jogo...")
+                print("Reiniciando a partida...")
                 repetirPartida = True
                 continue
 
@@ -347,6 +349,9 @@ while True:
         print("Cada acerto vale 9 pontos, e o jogo pode ser jogado no modo 'Melhor de 3' ou 'Melhor de 5'.")
         print("O jogador que acumular mais pontos ao final das rodadas vence a partida.")
 
+        print("Deseja voltar ao menu?")
+        escolha = input("Aperte qualquer botão para voltar:")
+
     elif opcao == "3" or opcao == "4":
         print("\n")
         print(mambo_naval)
@@ -354,9 +359,9 @@ while True:
         print("\n")
 
         if opcao == "4":
-            print("===== PLACAR FINAL =====")
+            print("========== PLACAR FINAL ==========")
         else:
-            print("===== PLACAR =====")
+            print("========== PLACAR ==========")
 
         if partida == 0:
             print("Nenhuma partida jogada ainda.")
@@ -389,6 +394,14 @@ while True:
         print(f"J2: {sequenciaJ2} vitória(s) consecutiva(s)")
         print(f"Recorde J1: {maiorSequenciaJ1}")
         print(f"Recorde J2: {maiorSequenciaJ2}")
+
+        print("\n===== PORCENTAGENS =====")
+
+        if partida == 0:
+            print("Nenhuma partida jogada ainda.")
+        else:
+            print(f"J1: {totalGeralJ1 / (partida * total_navios * 9) * 100:.2f}% de acertos")
+            print(f"J2: {totalGeralJ2 / (partida * total_navios * 9) * 100:.2f}% de acertos")
 
         if opcao == "3":
             print("\n")
