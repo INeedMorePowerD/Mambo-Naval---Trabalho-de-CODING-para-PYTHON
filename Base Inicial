@@ -211,7 +211,7 @@ while True:
                             print("Você já atirou nessa posição, Pare de ser Matikanetannhauser!")
 
                         elif matrizJ2[linha][coluna] == 1:
-                            print("Você acertou o alvo, VAI MAMBO!")
+                            print("Você acertou o alvo, pode atirar de novo, VAI MAMBO!")
                             matrizJ2_visual[linha][coluna] = "X"
                             pontosJ1 += 9
                             acertosJ1 += 1
@@ -256,7 +256,7 @@ while True:
                             print("Você já atirou nessa posição, Pare de ser Matikanetannhauser!")
 
                         elif matrizJ1[linha][coluna] == 1:
-                            print("Você acertou o alvo, VAI MAMBO!")
+                            print("Você acertou o alvo, pode atirar de novo, VAI MAMBO!")
                             matrizJ1_visual[linha][coluna] = "X"
                             pontosJ2 += 9
                             acertosJ2 += 1
@@ -347,6 +347,9 @@ while True:
         print("Cada acerto vale 9 pontos, e o jogo pode ser jogado no modo 'Melhor de 3' ou 'Melhor de 5'.")
         print("O jogador que acumular mais pontos ao final das rodadas vence a partida.")
 
+        print("Deseja voltar ao menu?")
+        escolha = (input("Aperte qualquer botão para voltar:"))
+
     elif opcao == "3" or opcao == "4":
         print("\n")
         print(mambo_naval)
@@ -354,9 +357,9 @@ while True:
         print("\n")
 
         if opcao == "4":
-            print("===== PLACAR FINAL =====")
+            print("========== PLACAR FINAL ==========")
         else:
-            print("===== PLACAR =====")
+            print("========== PLACAR ==========")
 
         if partida == 0:
             print("Nenhuma partida jogada ainda.")
@@ -389,6 +392,14 @@ while True:
         print(f"J2: {sequenciaJ2} vitória(s) consecutiva(s)")
         print(f"Recorde J1: {maiorSequenciaJ1}")
         print(f"Recorde J2: {maiorSequenciaJ2}")
+
+        print("\n===== PORCENTAGENS =====")
+
+        if partida == 0:
+            print("Nenhuma partida jogada ainda.")
+        else:
+            print(f"J1: {totalGeralJ1 / (partida * total_navios * 9) * 100:.2f}% de acertos")
+            print(f"J2: {totalGeralJ2 / (partida * total_navios * 9) * 100:.2f}% de acertos")
 
         if opcao == "3":
             print("\n")
