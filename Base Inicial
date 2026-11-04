@@ -1,4 +1,3 @@
-
 pontosJ1 = 0
 pontosJ2 = 0
 total_navios = 11
@@ -8,9 +7,6 @@ sequenciaJ1 = 0
 sequenciaJ2 = 0
 maiorSequenciaJ1 = 0
 maiorSequenciaJ2 = 0
-
-repetirPartida = False
-modoAnterior = 0
 
 matrizJ1 = [
     [1, 1, 1, 0, 0],
@@ -94,25 +90,21 @@ mambo = """⣿⣿⣿⣿⡿⣿⣿⡿⠛⠉⠁⠄⡰⠈⠤⠠⠀⠂⠠⠀⠀⠀⠀
 
 while True:
 
-    if repetirPartida:
-        opcao = "1"
-    else:
-        print(mambo_naval)
-        print(mambo)
+    print(mambo_naval)
+    print(mambo)
 
-        print("\n")
-        print("1 - JOGAR")
-        print("2 - REGRAS")
-        print("3 - PLACAR")
-        print("4 - SAIR")
+    print("\n")
+    print("1 - JOGAR")
+    print("2 - REGRAS")
+    print("3 - PLACAR")
+    print("4 - SAIR")
 
-        opcao = input("Digite a opção desejada: ")
+    opcao = input("Digite a opção desejada: ")
 
     if opcao == "1":
 
         if partida == 5:
             print("Limite de 5 partidas atingido! Veja o PLACAR ou escolha SAIR.")
-            repetirPartida = False
 
         else:
             print("\n")
@@ -120,234 +112,222 @@ while True:
             total_rodadas = 0
             voltar = False
 
-            if repetirPartida:
-                total_rodadas = modoAnterior
-                repetirPartida = False
+            while total_rodadas == 0 and voltar == False:
+                print("Escolha o modo de jogo:")
+                print("1 - Melhor de 3")
+                print("2 - Melhor de 5")
+                print("3 - Voltar ao menu")
 
-            else:
-                while total_rodadas == 0 and voltar == False:
-                    print("Escolha o modo de jogo:")
-                    print("1 - Melhor de 3")
-                    print("2 - Melhor de 5")
-                    print("3 - Voltar ao menu")
+                escolha = input("Digite a opção desejada: ")
 
-                    escolha = input("Digite a opção desejada: ")
+                if escolha == "1":
+                    total_rodadas = 3
 
-                    if escolha == "1":
-                        total_rodadas = 3
-                        modoAnterior = 3
+                elif escolha == "2":
+                    total_rodadas = 5
 
-                    elif escolha == "2":
-                        total_rodadas = 5
-                        modoAnterior = 5
+                elif escolha == "3":
+                    voltar = True
 
-                    elif escolha == "3":
-                        voltar = True
-
-                    else:
-                        print("Opção inválida!")
+                else:
+                    print("Opção inválida!")
 
             if voltar:
                 continue
+     
+            for indicePartida in range(partida, 4):
 
-            rodadas = 0
-            serieJ1 = 0
-            serieJ2 = 0
+                serieJ1 = 0
+                serieJ2 = 0
+              
+                for rodadas in range(1, total_rodadas):
 
-            while rodadas < total_rodadas:
+                    pontosJ1 = 0
+                    pontosJ2 = 0
+                    acertosJ1 = 0
+                    acertosJ2 = 0
 
-                pontosJ1 = 0
-                pontosJ2 = 0
-                acertosJ1 = 0
-                acertosJ2 = 0
+                    for i in range(5):
+                        for j in range(5):
+                            matrizJ1_visual[i + 1][j + 1] = "~"
+                            matrizJ2_visual[i + 1][j + 1] = "~"
 
-                # Reinicia apenas as casas do tabuleiro, preservando cabeçalhos
-                for i in range(5):
-                    for j in range(5):
-                        matrizJ1_visual[i + 1][j + 1] = "~"
-                        matrizJ2_visual[i + 1][j + 1] = "~"
+                    print(f"Rodada {rodadas + 1}")
+                    print("\n")
 
-                print(f"Rodada {rodadas + 1}")
-                print("\n")
+                    print("Tabuleiro Mambo J1:")
+                    print("\n")
+                    for fila in matrizJ1_visual:
+                        print(fila)
 
-                print("Tabuleiro Mambo J1:")
-                print("\n")
-                for fila in matrizJ1_visual:
-                    print(fila)
+                    print("\n")
+                    print("Tabuleiro Mambo J2:")
+                    print("\n")
+                    for fila in matrizJ2_visual:
+                        print(fila)
 
-                print("\n")
-                print("Tabuleiro Mambo J2:")
-                print("\n")
-                for fila in matrizJ2_visual:
-                    print(fila)
+                    print("\n")
 
-                print("\n")
+                    while acertosJ1 < total_navios and acertosJ2 < total_navios:
 
-                while acertosJ1 < total_navios and acertosJ2 < total_navios:
+                        vez = True
 
-                    vez = True
+                        while vez and acertosJ1 < total_navios:
+                            print("J1 digite as coordenadas para lançar um MAMBO MÍSSIL no J2(Use números de 1 a 5):")
 
-                    while vez and acertosJ1 < total_navios:
-                        print("J1 digite as coordenadas para lançar um MAMBO MÍSSIL no J2(Use números de 1 a 5):")
+                            linha = -1
+                            while linha == -1:
+                                entrada = input("Linha: ")
+                                for n in range(1, 6):
+                                    if entrada == str(n):
+                                        linha = n - 1
+                                if linha == -1:
+                                    print("Digite um número válido!")
 
-                        linha = -1
-                        while linha == -1:
-                            entrada = input("Linha: ")
-                            for n in range(1, 6):
-                                if entrada == str(n):
-                                    linha = n - 1
-                            if linha == -1:
-                                print("Digite um número válido!")
+                            coluna = -1
+                            while coluna == -1:
+                                entrada = input("Coluna: ")
+                                for n in range(1, 6):
+                                    if entrada == str(n):
+                                        coluna = n - 1
+                                if coluna == -1:
+                                    print("Digite um número válido!")
 
-                        coluna = -1
-                        while coluna == -1:
-                            entrada = input("Coluna: ")
-                            for n in range(1, 6):
-                                if entrada == str(n):
-                                    coluna = n - 1
-                            if coluna == -1:
-                                print("Digite um número válido!")
+                            if matrizJ2_visual[linha + 1][coluna + 1] != "~":
+                                print("Você já atirou nessa posição, Pare de ser Matikanetannhauser!")
 
-                        # Acessa a posição real somando 1 por causa dos cabeçalhos
-                        if matrizJ2_visual[linha + 1][coluna + 1] != "~":
-                            print("Você já atirou nessa posição, Pare de ser Matikanetannhauser!")
+                            elif matrizJ2[linha][coluna] == 1:
+                                print("Você acertou o alvo, pode atirar de novo, VAI MAMBO!")
+                                matrizJ2_visual[linha + 1][coluna + 1] = "X"
+                                pontosJ1 += 9
+                                acertosJ1 += 1
+                                print(f"Quantidade de cavalinhos(pontos para leigos):{pontosJ1}")
+                                print("\nAbaixo está o tabuleiro atualizado do oponente:")
 
-                        elif matrizJ2[linha][coluna] == 1:
-                            print("Você acertou o alvo, pode atirar de novo, VAI MAMBO!")
-                            matrizJ2_visual[linha + 1][coluna + 1] = "X"
-                            pontosJ1 += 9
-                            acertosJ1 += 1
-                            print(f"Quantidade de cavalinhos(pontos para leigos):{pontosJ1}")
+                                for fila in matrizJ2_visual:
+                                    print(fila)
 
-                            for fila in matrizJ2_visual:
-                                print(fila)
+                            else:
+                                print("Caiu na água!")
+                                matrizJ2_visual[linha + 1][coluna + 1] = "O"
 
-                        else:
-                            print("Caiu na água!")
-                            matrizJ2_visual[linha + 1][coluna + 1] = "O"
+                                for fila in matrizJ2_visual:
+                                    print(fila)
 
-                            for fila in matrizJ2_visual:
-                                print(fila)
+                                vez = False
 
-                            vez = False
+                        vez = True
 
-                    vez = True
+                        while vez and acertosJ2 < total_navios and acertosJ1 < total_navios:
+                            print("J2 digite as coordenadas para lançar um MAMBO MÍSSIL no J1(Use números de 1 a 5):")
 
-                    while vez and acertosJ2 < total_navios and acertosJ1 < total_navios:
-                        print("J2 digite as coordenadas para lançar um MAMBO MÍSSIL no J1(Use números de 1 a 5):")
+                            linha = -1
+                            while linha == -1:
+                                entrada = input("Linha: ")
+                                for n in range(1, 6):
+                                    if entrada == str(n):
+                                        linha = n - 1
+                                if linha == -1:
+                                    print("Digite um número válido!")
 
-                        linha = -1
-                        while linha == -1:
-                            entrada = input("Linha: ")
-                            for n in range(1, 6):
-                                if entrada == str(n):
-                                    linha = n - 1
-                            if linha == -1:
-                                print("Digite um número válido!")
+                            coluna = -1
+                            while coluna == -1:
+                                entrada = input("Coluna: ")
+                                for n in range(1, 6):
+                                    if entrada == str(n):
+                                        coluna = n - 1
+                                if coluna == -1:
+                                    print("Digite um número válido!")
 
-                        coluna = -1
-                        while coluna == -1:
-                            entrada = input("Coluna: ")
-                            for n in range(1, 6):
-                                if entrada == str(n):
-                                    coluna = n - 1
-                            if coluna == -1:
-                                print("Digite um número válido!")
+                            if matrizJ1_visual[linha + 1][coluna + 1] != "~":
+                                print("Você já atirou nessa posição, Pare de ser Matikanetannhauser!")
 
-                        if matrizJ1_visual[linha + 1][coluna + 1] != "~":
-                            print("Você já atirou nessa posição, Pare de ser Matikanetannhauser!")
+                            elif matrizJ1[linha][coluna] == 1:
+                                print("Você acertou o alvo, pode atirar de novo, VAI MAMBO!")
+                                matrizJ1_visual[linha + 1][coluna + 1] = "X"
+                                pontosJ2 += 9
+                                acertosJ2 += 1
+                                print(f"Quantidade de cavalinhos(pontos para leigos):{pontosJ2}")
+                                print("\nAbaixo está o tabuleiro atualizado do oponente:")
 
-                        elif matrizJ1[linha][coluna] == 1:
-                            print("Você acertou o alvo, pode atirar de novo, VAI MAMBO!")
-                            matrizJ1_visual[linha + 1][coluna + 1] = "X"
-                            pontosJ2 += 9
-                            acertosJ2 += 1
-                            print(f"Quantidade de cavalinhos(pontos para leigos):{pontosJ2}")
+                                for fila in matrizJ1_visual:
+                                    print(fila)
 
-                            for fila in matrizJ1_visual:
-                                print(fila)
+                            else:
+                                print("Caiu na água!")
+                                matrizJ1_visual[linha + 1][coluna + 1] = "O"
 
-                        else:
-                            print("Caiu na água!")
-                            matrizJ1_visual[linha + 1][coluna + 1] = "O"
+                                for fila in matrizJ1_visual:
+                                    print(fila)
 
-                            for fila in matrizJ1_visual:
-                                print(fila)
+                                vez = False
 
-                            vez = False
+                    placarJ1[indicePartida][rodadas - 1] = pontosJ1
+                    placarJ2[indicePartida][rodadas - 1] = pontosJ2
 
-                placarJ1[partida][rodadas] = pontosJ1
-                placarJ2[partida][rodadas] = pontosJ2
+                    serieJ1 += pontosJ1
+                    serieJ2 += pontosJ2
 
-                serieJ1 += pontosJ1
-                serieJ2 += pontosJ2
+                    if acertosJ1 == total_navios:
+                        print(f"J1 venceu a rodada {rodadas + 1}!")
+                    else:
+                        print(f"J2 venceu a rodada {rodadas + 1}!")
 
-                if acertosJ1 == total_navios:
-                    print(f"J1 venceu a rodada {rodadas + 1}!")
+                partida = indicePartida + 1
+
+                print(f"Fim da partida! J1 = {serieJ1} pontos | J2 = {serieJ2} pontos")
+
+                if serieJ1 > serieJ2:
+                    print("J1 venceu a partida!")
+
+                    sequenciaJ1 += 1
+                    sequenciaJ2 = 0
+
+                    if sequenciaJ1 > maiorSequenciaJ1:
+                        maiorSequenciaJ1 = sequenciaJ1
+
+                elif serieJ2 > serieJ1:
+                    print("J2 venceu a partida!")
+
+                    sequenciaJ2 += 1
+                    sequenciaJ1 = 0
+
+                    if sequenciaJ2 > maiorSequenciaJ2:
+                        maiorSequenciaJ2 = sequenciaJ2
+
                 else:
-                    print(f"J2 venceu a rodada {rodadas + 1}!")
+                    print("A partida terminou empatada!")
 
-                rodadas += 1
+                    sequenciaJ1 = 0
+                    sequenciaJ2 = 0
 
-            partida += 1
+                print("\nFim do jogo. Obrigado por jogar uma partida de Mambo Naval!")
+                print("Deseja jogar novamente?")
+                print("1 - Sim")
+                print("2 - Não")
 
-            print(f"Fim da partida! J1 = {serieJ1} pontos | J2 = {serieJ2} pontos")
+                escolha = input("Digite a opção desejada: ")
 
-            if serieJ1 > serieJ2:
-                print("J1 venceu a partida!")
+                while escolha != "1" and escolha != "2":
+                    print("Opção inválida. Por favor, digite 1 ou 2.")
+                    escolha = input("Digite a opção desejada: ")
 
-                sequenciaJ1 += 1
-                sequenciaJ2 = 0
+                if escolha == "1":
+                    if partida >= 4:
+                        print("Limite de 5 partidas atingido! Veja o PLACAR ou escolha SAIR.")
+                        break
 
-                if sequenciaJ1 > maiorSequenciaJ1:
-                    maiorSequenciaJ1 = sequenciaJ1
+                    print("Reiniciando a partida...")
+                    break
 
-            elif serieJ2 > serieJ1:
-                print("J2 venceu a partida!")
-
-                sequenciaJ2 += 1
-                sequenciaJ1 = 0
-
-                if sequenciaJ2 > maiorSequenciaJ2:
-                    maiorSequenciaJ2 = sequenciaJ2
-
-            else:
-                print("A partida terminou empatada!")
-
-                sequenciaJ1 = 0
-                sequenciaJ2 = 0
-
-            print("\nFim do jogo. Obrigado por jogar uma partida de Mambo Naval!")
-            print("Deseja jogar novamente?")
-            print("1 - Sim")
-            print("2 - Não")
-
-            escolha = input("Digite a opção desejada: ")
-
-            if escolha == "1":
-                if partida == 5:
-                    print("Limite de 5 partidas atingido! Veja o PLACAR ou escolha SAIR.")
-                    repetirPartida = False
-                    continue
-
-                print("Reiniciando a partida...")
-                repetirPartida = True
-                continue
-
-            elif escolha == "2":
-                print("Saindo do jogo. Até a próxima!")
-                repetirPartida = False
-                continue
-
-            else:
-                print("Opção inválida. Por favor, digite 1 ou 2.")
-                continue
+                elif escolha == "2":
+                    print("Saindo do jogo. Até a próxima!")
+                    break
 
     elif opcao == "2":
         print("O jogo é uma batalha naval, onde cada jogador possui 11 navios posicionados em uma matriz 5x5.")
         print("O objetivo é acertar os navios do adversário lançando Mambo mísseis em coordenadas específicas, acertos serão X e erros serão O")
         print("Cada acerto vale 9 pontos, e o jogo pode ser jogado no modo 'Melhor de 3' ou 'Melhor de 5'.")
-        print("O jogador que acumular mais pontos ao final das rodadas vence a partida.")
 
         print("Deseja voltar ao menu?")
         escolha = input("Aperte qualquer botão para voltar:")
@@ -405,7 +385,7 @@ while True:
 
         if opcao == "3":
             print("\n")
-            input("Pressione ENTER para voltar ao menu...")
+            input("Pressione qualquer botão para voltar ao menu...")
 
     else:
         print("Opção inválida. Por favor, digite 1, 2, 3 ou 4.")
