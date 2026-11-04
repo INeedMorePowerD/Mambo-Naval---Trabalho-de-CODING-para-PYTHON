@@ -13,12 +13,12 @@ matrizJ1 = [
     [0, 0, 0, 0, 0],
     [1, 1, 0, 0, 1],
     [0, 0, 0, 0, 1],
-    [0, 1, 1, 1, 1]
+    [2, 1, 1, 1, 1]
 ]
 
 matrizJ2 = [
     [1, 1, 0, 0, 0],
-    [0, 1, 1, 1, 0],
+    [0, 1, 1, 1, 2],
     [0, 0, 0, 0, 1],
     [0, 0, 0, 0, 1],
     [1, 1, 1, 0, 1]
@@ -207,8 +207,17 @@ while True:
                                 for fila in matrizJ2_visual:
                                     print(fila)
 
+                            elif matrizJ2[linha][coluna] == 2:
+                                print("OH NÃO! Você acertou um navio da Matikanenofukukitaru! Você perdeu 18 pontos!")
+                                matrizJ2_visual[linha + 1][coluna + 1] = "-"
+                                pontosJ1 -= 18
+                                print(f"Quantidade de cavalinhos(pontos para leigos):{pontosJ1}")
+                                print("\nAbaixo está o tabuleiro atualizado do oponente:")
+                                for fila in matrizJ2_visual:
+                                    print(fila)
+
                             else:
-                                print("Caiu na água!")
+                                print("Caiu na água! PASSANDO A VEZ PARA O J2")
                                 matrizJ2_visual[linha + 1][coluna + 1] = "O"
 
                                 for fila in matrizJ2_visual:
@@ -253,8 +262,16 @@ while True:
                                 for fila in matrizJ1_visual:
                                     print(fila)
 
+                            elif matrizJ1[linha][coluna] == 2:
+                                print("OH NÃO! Você acertou um navio da Matikanenofukukitaru! Você perdeu 18 pontos!")
+                                matrizJ1_visual[linha + 1][coluna + 1] = "-"
+                                pontosJ2 -= 18
+                                print(f"Quantidade de cavalinhos(pontos para leigos):{pontosJ2}")
+                                print("\nAbaixo está o tabuleiro atualizado do oponente:")
+                            
+
                             else:
-                                print("Caiu na água!")
+                                print("Caiu na água! PASSANDO A VEZ PARA O J1")
                                 matrizJ1_visual[linha + 1][coluna + 1] = "O"
 
                                 for fila in matrizJ1_visual:
@@ -394,4 +411,3 @@ while True:
     if opcao == "4":
         print("Saindo do jogo. Até a próxima!")
         break
-
