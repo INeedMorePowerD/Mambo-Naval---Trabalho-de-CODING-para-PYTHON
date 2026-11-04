@@ -403,7 +403,7 @@ while True:
         if opcao == "3":
             print("\n")
             print("\n")
-            input("Pressione qualquer botão para voltar ao menu...")
+            input("Pressione qualquer botão para voltar ao menu....")
 
     else:
         print("Opção inválida. Por favor, digite 1, 2, 3 ou 4.")
