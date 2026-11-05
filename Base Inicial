@@ -5,7 +5,7 @@ partida = 0
 
 sequenciaJ1 = 0
 sequenciaJ2 = 0
-maiorSequenciaJ1 = 0
+maiorSequenciaJ1 = 0 
 maiorSequenciaJ2 = 0
 
 matrizJ1 = [
@@ -345,6 +345,9 @@ while True:
         print("O jogo é uma batalha naval, onde cada jogador possui 11 navios posicionados em uma matriz 5x5.")
         print("O objetivo é acertar os navios do adversário lançando Mambo mísseis em coordenadas específicas, acertos serão X e erros serão O")
         print("Cada acerto vale 9 pontos, e o jogo pode ser jogado no modo 'Melhor de 3' ou 'Melhor de 5'.")
+        print("Se um jogador acertar uma casa especial, ele perde 18 pontos.")
+        print("O jogo termina quando um jogador acerta todos os navios do adversário ou quando todas as rodadas são concluídas.")
+        print("O jogador com mais pontos ao final das rodadas vence a partida.")
 
         print("Deseja voltar ao menu?")
         escolha = input("Aperte qualquer botão para voltar:")
